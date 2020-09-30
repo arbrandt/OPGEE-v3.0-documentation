@@ -403,7 +403,7 @@ Class & Est. mag. [gCO$_2$eq/MJ] & Description \\
 Because of the need for transparent data basis, OPGEE uses data from a variety of technical reference works. For example, emissions factors are derived from standard engineering references from the American Petroleum Institute (API) and Environmental Protection Agency (EPA) \cite{EPA1995a, Shires2004}. A large number of technical references, journal articles, and fundamental data sources have been consulted during the construction of OPGEE, including: 
 \begin{itemize}
 \item Exploration and drilling \cite{Shires2004, Azar2007, Devereux1998, Gidley1989, Lapeyrouse2002, Mitchell2006, Mitchell2011, Wilson1999}
-\item Production and surface separations \cite{Shires2004, EPA1995, API1991, API1993a, API1995a, API1996b, API1998a, API2003, API2006, API2008a, API2008b, API2009a, API2009b, API2009c, API2009d, Arnold2007, Chilingarian1987, Chilingarian1989, Cholet2000, Clegg2007, Fanchi2007, GPSA2004, Holstein2007a, Holstein2007b, Leffler2006, Manning1991, Manning1995, Stewart2008, Stewart2009, Stewart2011, Takacs1993, Takacs2003}
+\item Production and surface separations \cite{Shires2004,  API1991, API1993a, API1995a, API1996b, API1998a, API2003, API2006, API2008a, API2008b, API2009a, API2009b, API2009c, API2009d, Arnold2007, Chilingarian1987, Chilingarian1989, Cholet2000, Clegg2007, Fanchi2007, GPSA2004, Holstein2007a, Holstein2007b, Leffler2006, Manning1991, Manning1995, Stewart2008, Stewart2009, Stewart2011, Takacs1993, Takacs2003}
 \item Secondary and tertiary recovery \cite{Craig1993, Jarrell2002, Prats1985, Rose1989, Warner2007, Green1998}
 \item Water treatment and waste disposal \cite{Wilson1999, Manning1995, Stewart2011, Khatib2002, Neff2007, Reed1996, Veil2004}
 \item Venting, flaring, and fugitive emissions \cite{API1991, API1993a, API1995a, API1996b, API1998a, API1998b, API1998c, API2003, API2006, API2008a, API2008b, API2008c, API2009a, API1993b, API1995a, API2009e}
@@ -489,7 +489,7 @@ Each of these analyses requires the user interact with OPGEE beyond the \sheet{I
 In order to demonstrate the steps described in previous sections of the User Guide, this section will provide a step-by-step OPGEE example applied to three different crude oils. In the first part, we look simply at basic OPGEE operation. In the second part, we will look at uncertainty analysis of the same three crude oils.
 For illustration of how key parameters affect crude oil GHG intensity, we have selected three distinctive field types (Table \ref{tab:example_parameters}). These field types, gas-rich, heavy, and tight, are based on approximate data from US fields Prudhoe Bay (Alaska), Midway Sunset, (California) and Eagle Ford (Texas), respectively.
 
-\begin{table}[h]
+\begin{table}[ht]
 \begin{scriptsize}
 \caption{Key parameter inputs for example oil fields}
 \label{tab:example_parameters}
@@ -535,7 +535,7 @@ We populate columns 1-3 with data collected for our three oil fields. A single c
 
 For basic interaction, we will run each field one at a time with one uncertainty realization (recalling that the \sheet{Active Field} sheet only displays information one field at a time). In the case of our tight oil field, we note that horizontal drilling and hydraulic fracturing need to be turned on in the \sheet{Secondary Inputs} worksheet (as a first approximation, navigate to ``Drilling \& development'' in \sheet{Secondary Inputs} and set ``Fraction of wells fractured'' and ``Horizontal well?'' to ``1'').
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=1\columnwidth]{documentation/images/User_Guide_figs/inputs.jpg}
 \caption{Screenshot of input data entered into the \sheet{Inputs} worksheet}
 \label{fig:example_inputs}
@@ -579,9 +579,9 @@ After checking that our results are error-free, we look at emissions results. Fi
 \subsection{Uncertainty analysis} 
 
 For this analysis, we wish to assess error for 200 Monte Carle realizations. Inputs for multiple fields can be handled sequentially in a single OPGEE ``run'' from the \sheet{Inputs} worksheet. Again recalling that hydraulic fracturing and horizontal drilling need to be adjusted in \sheet{Secondary Inputs} for our tight oil field, we split our model runs into two batches. One run includes 200 realizations each of our gassy and heavy fields, and our second run includes 200 realizations of our tight oil field (with adjustments in \sheet{Secondary Inputs}).
-After running the model, we perform analysis using the 200 realizations gathered in the \sheet{Uncertainty} worksheet. For this analysis, plotting is not performed in OPGEE, so we post-process the data in Matlab. For each field, a GHG intensity value was iteratively pulled from the OPGEE generated data as a new realization, and added to the pool of realizations. At each iteration, the sample mean ($\bar{\mu_{CI}}$) and standard deviation ($\bar{\sigma_{CI}}$) of the pool is recorded. In this way, we test the effect of number of realizations on $\bar{\mu_{CI}}$ and $\bar{\sigma_{CI}}$. By comparing how our three different fields behave, we can assess how data availability affects the number of realizations required for stable values of $\bar{\mu_{CI}}$ and $\bar{\sigma_{CI}}$. Based on our results (Figure \ref{fig:example_uncertainty}), $\bar{\mu_{CI}}$ stabilizes very quickly, and $\bar{\sigma_{CI}}$ stabilizes at a small value (less than 1 gCO$_2$eq/MJ for all fields) after about 100 realizations.
+After running the model, we perform analysis using the 200 realizations gathered in the \sheet{Uncertainty} worksheet. For this analysis, plotting is not performed in OPGEE, so we post-process the data in Matlab. For each field, a GHG intensity value was iteratively pulled from the OPGEE generated data as a new realization, and added to the pool of realizations. At each iteration, the sample mean ($\bar{\mu_{CI}}$) and standard deviation ($\bar{\sigma_{CI}}$) of the pool is recorded. In this way, we test the effect of number of realizations on $\bar{\mu_{CI}}$ and $\bar{\sigma_{CI}}$. By comparing how our three different fields behave, we can assess how data availability affects the number of realizations required for stable values of $\bar{\mu_{CI}}$ and $\bar{\sigma_{CI}}$. Based on our results (Figure \ref{fig:example_uncertainty_1}), $\bar{\mu_{CI}}$ stabilizes very quickly, and $\bar{\sigma_{CI}}$ stabilizes at a small value (less than 1 gCO$_2$eq/MJ for all fields) after about 100 realizations.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=1\columnwidth]{documentation/images/User_Guide_figs/uncertaintypage_2.jpg}
 \caption{Screenshot of \sheet{Uncertainty} worksheet}
 \label{fig:uncertaintypage}
@@ -590,7 +590,7 @@ After running the model, we perform analysis using the 200 realizations gathered
 \begin{figure}[!htbp]
 \includegraphics[width=1\columnwidth]{documentation/images/User_Guide_figs/uncertaintyresults_2.jpg}
 \caption{$\bar{\mu_{CI}}$ and $\bar{\sigma_{CI}}$ versus number of Monte Carlo realizations (n).}
-\label{fig:example_uncertainty}
+\label{fig:example_uncertainty_1}
 \end{figure}
 
 % issue 2: Jeff: move all three plots of figure 3.12 in one column
@@ -598,7 +598,7 @@ After running the model, we perform analysis using the 200 realizations gathered
 \begin{figure}[!htbp]
 \includegraphics[width=1\columnwidth]{documentation/images/User_Guide_figs/histos.jpg}
 \caption{Histogarms of GHG intensity (CO$_2$eq/MJ) over 200 Monte Carlo simulations.}
-\label{fig:example_uncertainty}
+\label{fig:example_uncertainty_2}
 \end{figure}
 
 \clearpage
@@ -610,7 +610,7 @@ After running the model, we perform analysis using the 200 realizations gathered
 OPGEE is composed of numerous worksheets, each of which can be categorized into one of five types: (1) input sheets, (2) field summary sheets, (3) process stage worksheets, (4) supplementary worksheets, and (5) output gathering worksheets. The excel tabs are colored beige, green, red, yellow, and grey, respectively. Navigating OPGEE worksheets is much easier if one has an understanding of how these five worksheet types interact (Figure \ref{fig:model_structure}). In this section, we will briefly describe each type of OPGEE worksheet.
 
 \begin{landscape}
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=1\columnwidth]{documentation/images/User_Guide_figs/Fig_3.jpg}
 \caption{OPGEE model workflow according to worksheet types).}
 \label{fig:model_structure}
@@ -619,7 +619,7 @@ OPGEE is composed of numerous worksheets, each of which can be categorized into 
 
 In using the OPGEE workbook, the user will encounter different types of cells. Some cells are free to adjust (mostly input sheets) and some aren't (mostly process and supplementary worksheets). As shown in Figure \ref{fig:cell_types} below, User Free and Default Free cells are included with light tones, while User Locked and Default Locked cells are included with dark tones. 
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=1\columnwidth]{documentation/images/CellTypes.pdf}
 \caption{Types of cells. User Free and Default Free cells can be changed, while Locked cells should not be changed due to possibility of compromising model functionality. Flow sheet cells are either calculated in place or looked up from the large flow table.}
 \label{fig:cell_types}
@@ -1080,7 +1080,7 @@ Light & 2254 & $>$ 30 & 37.7 & 2,429.3 & 910.8 & 3,635.9 \\
 
 \subsection{Default water oil ratio (WOR)} \label{WORSmartDefault}
 
-Some defaults require more flexible ($“$smart$”$) default specifications. The water-oil-ratio (WOR, \xlname{WOR}) is a major parameter in influencing GHG emissions. OPGEE includes a statistical relationship for water production as a function of reservoir age. The default exponential relationship is a moderate case parameterized with a variety of industry data. Nevertheless, this relationship does not work well in predicting WOR for giant fields with very high per well productivity (e.g., Ghawar in Saudi Arabia).
+Some defaults require more flexible (``smart'') default specifications. The water-oil-ratio (WOR, \xlname{WOR}) is a major parameter in influencing GHG emissions. OPGEE includes a statistical relationship for water production as a function of reservoir age. The default exponential relationship is a moderate case parameterized with a variety of industry data. Nevertheless, this relationship does not work well in predicting WOR for giant fields with very high per well productivity (e.g., Ghawar in Saudi Arabia).
 
 A smart default for the water oil ratio as a function of field age was generated using data from large fields in various world regions. Data on oil and water production were extracted from reports issued by California Division of Oil, Gas and Geothermal Resources (DOGGR), Alberta Energy Resources Conservation Board (ERCB), Alaska Oil and Gas Conservation Commission (AOGCC), Natural Resources Canada (NRC), United Kingdom Department of Energy and Climate Change (DECC), and the Norwegian Petroleum Directorate (NPD). For the Norwegian fields, water production data were not available prior to the year 2000. For Alberta fields, data were not available prior to 1962. Only data for the first 60 years of production were included. Only California fields contained data beyond 55 years, and therefore we excluded these years to avoid possibly atypical depleted field behavior in California from significantly affecting the least squares fit. 
 
@@ -1642,23 +1642,23 @@ Eq. num. 			& Description	 			& Term		& Value  		& Units		& Source \\
 \ref{eq:BOB}		& Bubblepoint oil FVF		& $a_4$		& 4.49E-04	& -			& \cite{Alshammasi2001} \\
 \ref{eq:BOB}		& Bubblepoint oil FVF		& $a_5$		& 2.06E-04	& -			& \cite{Alshammasi2001} \\
 \midrule
-\ref{eq:X_ISO}		& Isothermal compressibility	& $a_1$		& -1.37E-05	& [bbl/scf]			& \cite{Almarhoun1992} \\
-\ref{eq:X_ISO}		& Isothermal compressibility	& $a_2$		& -1.93E-08	& [bbl$^2$/scf$^2$]			& \cite{Almarhoun1992} \\
-\ref{eq:X_ISO}		& Isothermal compressibility	& $a_3$		& 2.41E-02	& [-]			& \cite{Almarhoun1992} \\
-\ref{eq:X_ISO}		& Isothermal compressibility	& $a_4$		& -9.26E-03	& [1/$^\circ$R$^2$]			& \cite{Almarhoun1992} \\
+\ref{eq:BO}		& Isothermal compressibility	& $a_1$		& -1.37E-05	& [bbl/scf]			& \cite{Almarhoun1992} \\
+\ref{eq:BO}		& Isothermal compressibility	& $a_2$		& -1.93E-08	& [bbl$^2$/scf$^2$]			& \cite{Almarhoun1992} \\
+\ref{eq:BO}		& Isothermal compressibility	& $a_3$		& 2.41E-02	& [-]			& \cite{Almarhoun1992} \\
+\ref{eq:BO}		& Isothermal compressibility	& $a_4$		& -9.26E-03	& [1/$^\circ$R$^2$]			& \cite{Almarhoun1992} \\
 \midrule
 \ref{eq:rho_o}		& Density of oil				& $a_1$		& 62.428		& [lbm/ft$^3$]			& \cite{Fanchi2007} \\
 \ref{eq:rho_o}		& Density of oil				& $a_2$		& 0.0136		& [lbm-bbl/ft$^3$-scf]			& \cite{Fanchi2007} \\
 \midrule
-\ref{eq:LHVO}		& Lower heating value of oil	& $a_1$		& 16796		& [btu LHV/lbm]	 & \cite{APITechDatabook} \\
-\ref{eq:LHVO}		& Lower heating value of oil	& $a_2$		& 54.4		& [btu LHV/lbm-$^\circ$API]	 & \cite{APITechDatabook} \\
-\ref{eq:LHVO}		& Lower heating value of oil	& $a_3$		& 0.217		& [btu LHV/lbm-$^\circ$API$^2$] & \cite{APITechDatabook} \\
-\ref{eq:LHVO}		& Lower heating value of oil	& $a_4$		& 0.0019		& [btu LHV/lbm-$^\circ$API$^3$]& \cite{APITechDatabook} \\
+\ref{eq:LHVO}		& Lower heating value of oil	& $a_1$		& 16796		& [btu LHV/lbm]	 & \cite{API1997} \\
+\ref{eq:LHVO}		& Lower heating value of oil	& $a_2$		& 54.4		& [btu LHV/lbm-$^\circ$API]	 & \cite{API1997} \\
+\ref{eq:LHVO}		& Lower heating value of oil	& $a_3$		& 0.217		& [btu LHV/lbm-$^\circ$API$^2$] & \cite{API1997} \\
+\ref{eq:LHVO}		& Lower heating value of oil	& $a_4$		& 0.0019		& [btu LHV/lbm-$^\circ$API$^3$]& \cite{API1997} \\
 \midrule
-\ref{eq:HHVO}		& Higher heating value of oil	& $a_1$		& 17672		& [btu LHV/lbm]	 & \cite{APITechDatabook} \\
-\ref{eq:HHVO}		& Higher heating value of oil	& $a_2$		& 66.6		& [btu LHV/lbm-$^\circ$API]	 & \cite{APITechDatabook} \\
-\ref{eq:HHVO}		& Higher heating value of oil	& $a_3$		& 0.316		& [btu LHV/lbm-$^\circ$API$^2$] & \cite{APITechDatabook} \\
-\ref{eq:HHVO}		& Higher heating value of oil	& $a_4$		& 0.0014		& [btu LHV/lbm-$^\circ$API$^3$]& \cite{APITechDatabook} \\
+\ref{eq:HHVO}		& Higher heating value of oil	& $a_1$		& 17672		& [btu LHV/lbm]	 & \cite{API1997} \\
+\ref{eq:HHVO}		& Higher heating value of oil	& $a_2$		& 66.6		& [btu LHV/lbm-$^\circ$API]	 & \cite{API1997} \\
+\ref{eq:HHVO}		& Higher heating value of oil	& $a_3$		& 0.316		& [btu LHV/lbm-$^\circ$API$^2$] & \cite{API1997} \\
+\ref{eq:HHVO}		& Higher heating value of oil	& $a_4$		& 0.0014		& [btu LHV/lbm-$^\circ$API$^3$]& \cite{API1997} \\
 \bottomrule
 \end{tabularx}
 \end{scriptsize}
@@ -1765,19 +1765,19 @@ For compression of nitrogen (N$_2$) \cite{SpanLemmon2000}, carbon dioxide (CO$_2
 
 The experimentally-determined Standing and Katz hydrocarbon Z-factor correlation chart (Figure\,\ref{fig:StandingKatzZFactors} \cite{StandingKatz1942}) presents compressibility factors for a hydrocarbon gas mixture based on its pseudoreduced temperature and psudoreduced pressure \cite{StandingKatz1942}.  When hydrocarbon gas mixtures are compressed, OPGEE uses a correlation generated from the Standing and Katz chart to calculate an approximate Z-factor for each stage of compression \cite{Standing1977}. The correlations for the upper and lower portions of the chart are presented in Figure \ref{fig:SBBCorrelationUpper} and Figure \ref{fig:SBBCorrelationLower}, respectively. These correlations are implemented in a VBA user-defined formula \xlname{zfactor(T\_R, P\_R)}.
 
-\begin{figure}[t]
+\begin{figure}[ht]
 \includegraphics[width=0.70\columnwidth]{images/StandingKatzOriginal.pdf}
 \caption{Standing and Katz \cite{StandingKatz1942} Natural Gas Mixture Z-Factor Chart.}
 \label{fig:StandingKatzZFactors}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[ht]
 \includegraphics[width=0.70\columnwidth]{images/StandingKatzCorrelationUpper.pdf}
 \caption{Correlation of Upper Portion of Standing and Katz Z-Factor Chart. Source: \cite{Standing1977}.}
 \label{fig:SBBCorrelationUpper}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[ht]
 \includegraphics[width=0.70\columnwidth]{images//StandingKatzCorrelationLower.pdf}
 \caption{Correlation of Lower Portion of Standing and Katz Z-Factor Chart. Source: \cite{Standing1977}.}
 \label{fig:SBBCorrelationLower}
@@ -1918,7 +1918,7 @@ The specific gravity of produced water (\xlname{GAMMA\_W}) at standard condition
 \end{minipage}
 
 %%%%%%%%%% 
-where $C _{sd}$ = concentration of dissolved solids (also known as TDS) [\unitfrac{mg}{L}]. The constant 0.695 $\times$ 10$^{-6}$ has units of [L/mg].
+where $C _{sd}$ = concentration of dissolved solids (also known as TDS) [\unitfrac{mg}{L}]. The constant 0.695 $\times$ 10$^{-6}$ has units of [\unitfrac{L}{mg}].
 
 
 \paragraph{Water formation volume factor}
@@ -2132,7 +2132,7 @@ The default values for these inputs are noted in Table \ref{tab:exploration}.
 The survey vehicle energy consumption (e.g., seismic survey ship or seismic survey trucks) are calculated as:
 %%%%%%%%%%%%%%%%
 \begin{equation}
-\label{eq:trans_Etr}
+\label{eq:explore_Eexp}
 E_{EXP} = \sum_{j} y_j m_j D_{j} UE_{j} (j \in S,T)  \quad\quad\eqnunit{mmBtu}
 \end{equation}
 %%%%%%%%%%%%%%%%
@@ -2531,12 +2531,12 @@ Next, the carbon richness of the ecosystem is specified. Options include low, mo
 
 Lastly, the intensity of field development must be specified. High intensity field development corresponds to high fractional disturbance, such as in a field drilled on tight spacing. Low intensity field development corresponds to a sparsely developed field with little fractional disturbance. Moderate field development occurs between these two extremes. Work by Yeh et al. \cite{Yeh2010} can be consulted for satellite images of low and high field development intensity. The intensity of land disturbance is set with the \xlname{Low\_land\_disturbance\_01}, \xlname{Med\_land\_disturbance\_01}, and \xlname{High\_land\_disturbance\_01} primary inputs.
 
-Emissions associated with each choice are shown in Table \ref{tab:default_land_use_emissions} in units of gCO$_2$eq GHGs per MJ of crude oil produced. These values are looked up for use in the calculation.
+Emissions associated with each choice are shown in Table \ref{tab:default_land_use_emissions_30} and \ref{tab:default_land_use_emissions_150}  in units of gCO$_2$eq GHGs per MJ of crude oil produced. These values are looked up for use in the calculation. The two tables are for different time periods of analysis from Yeh et al. \cite{Yeh2010}, 30 years and 150 years. A 30 year analysis is roughly the length of an industrial project and accounts for reassimilation of carbon during the project life. A 150 year analysis extends this and includes reassimilation that occurs after the project ends. 
 
 
 \subsubsection{Flowback emissions and venting during drilling \& development}
 
-Completions and workover events can result in flowback emissions. Flowback occurs after the completion event when the well is opened to the production system, often at low pressure, to allow any material (i.e., excess fracturing water) to flow to the surface. Gas produced during flowback can be captured for use (so-called reduced emissions completion, or REC), flared, or vented. The method to estimate flowback emissions of CO$_2$ and CH$_4$ are described below in section \ref{}. The two secondary inputs controlling emissions per completions event are \xlname{Flaring\_Fracturing\_Flowback} and \xlname{REC\_Fracturing\_Flowback}. If these are equal to 1, then the appropriate technologies, flaring or REC is applied. Similarly, these secondary inputs control whether emissions during workover flowback events are controlled with flaring, with REC, with both flaring and REC, or with neither.
+Completions and workover events can result in flowback emissions. Flowback occurs after the completion event when the well is opened to the production system, often at low pressure, to allow any material (i.e., excess fracturing water) to flow to the surface. Gas produced during flowback can be captured for use (so-called reduced emissions completion, or REC), flared, or vented. The two secondary inputs controlling emissions per completions event are \xlname{Flaring\_Fracturing\_Flowback} and \xlname{REC\_Fracturing\_Flowback}. If these are equal to 1, then the appropriate technologies, flaring or REC is applied. Similarly, these secondary inputs control whether emissions during workover flowback events are controlled with flaring, with REC, with both flaring and REC, or with neither.
 
 % issue 7: which section is referred in above paragraph?
 
@@ -2544,12 +2544,12 @@ Once these emissions are estimated, they are combined with the number of wells d
 
 \subsection{Defaults for drilling \& development}
 
-Default values for drilling \& development calculations are shown in Tables \ref{tab:default_land_use_emissions}, \ref{tab:primary_inputs_drilling}, and \ref{tab:secondary_inputs_drilling}. 
+Default values for drilling \& development calculations are shown in Tables \ref{tab:default_land_use_emissions_30},\ref{tab:default_land_use_emissions_150}, \ref{tab:primary_inputs_drilling}, and \ref{tab:secondary_inputs_drilling}. 
 
 \begin{table}
 \begin{scriptsize}
 \caption{Land use GHG emissions for 30 year analysis period from field drilling and development in OPGEE for conventional oil operations [gCO$_2$eq/MJ of crude oil produced]. Data from Yeh et al \cite{Yeh2010}.}
-\label{tab:default_land_use_emissions}
+\label{tab:default_land_use_emissions_30}
 \begin{tabular}{p{0.13\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}}
 \toprule
 & \multicolumn{3}{p{0.25\columnwidth}}{Low carbon stock } & \multicolumn{3}{p{0.25\columnwidth}}{Moderate carbon stock } & \multicolumn{3}{p{0.25\columnwidth}}{High carbon stock}\\
@@ -2569,7 +2569,7 @@ Foregone seq.\ & 0.00 & 0.00 & 0.00 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02\\
 \begin{table}
 \begin{scriptsize}
 \caption{Land use GHG emissions for 150 year analysis period from field drilling and development in OPGEE for conventional oil operations [gCO$_2$eq/MJ of crude oil produced]. Data from Yeh et al \cite{Yeh2010}.}
-\label{tab:default_land_use_emissions}
+\label{tab:default_land_use_emissions_150}
 \begin{tabular}{p{0.13\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}p{0.06\columnwidth}}
 \toprule
 & \multicolumn{3}{p{0.25\columnwidth}}{Low carbon stock } & \multicolumn{3}{p{0.25\columnwidth}}{Moderate carbon stock } & \multicolumn{3}{p{0.25\columnwidth}}{High carbon stock}\\
@@ -2776,7 +2776,7 @@ q_{g} = \frac{k h}{\beta \text{ln}\left(\frac{r_2}{r_1} \right)} \Delta \psi \qu
 
 Where $\beta$ and $\Delta \psi$ are defined based on the pressure in the following table:
 
-\begin{table}[h]
+\begin{table}[ht]
 \begin{scriptsize}
 \caption{Definition of $\beta$ and $\psi$ in gas side pressure drop approximation}
 \begin{tabular*}{0.8\columnwidth}{p{0.3\columnwidth}p{0.25\columnwidth}p{0.25\columnwidth}}
@@ -2855,7 +2855,7 @@ $T_{R}$ 	    & Reservoir temperature			    & \xlname{Res\_temp}  & 198.2 		& 50-
 \begin{threeparttable}
 \begin{supertabular*}{1\columnwidth}{p{0.03\columnwidth}p{0.25\columnwidth}p{0.25\columnwidth}p{0.07\columnwidth}p{0.07\columnwidth}p{0.07\columnwidth}p{0.07\columnwidth}p{0.07\columnwidth}}
 $p_{e,i}$       & Excess pressure of injection                        & \xlname{Pressure\_excess\_injection} &   500 & 100-1,000  & [psi] &  & \\
-$k_{R$             & Permeability of reservoir                         & \xlname{Permeability\_reservoir} & 100 & 0.1 - 1000 & [mD] & & \\
+$k_{R}$             & Permeability of reservoir                         & \xlname{Permeability\_reservoir} & 100 & 0.1 - 1000 & [mD] & & \\
 $h_{R}$         & Net reservoir thickness                           & \xlname{Pay\_thickness\_reservoir}  & 50 & 10-500 & [ft] & & \\
 \end{supertabular*}
 %\begin{tablenotes}
@@ -2955,7 +2955,7 @@ Other averaged properties are computed by averaging items looked up from the Flo
 
 \begin{minipage}{0.6\columnwidth}
 \begin{fleqn}[0pt]
-\begin{equation} \label{eq:avg_wellbore_pressure}
+\begin{equation} \label{eq:avg_solution_GOR}
 R_{os,avg} =  \frac{R_{os,wf}+R_{os,wh}}{2}  \quad\quad\eqnunit{psi}
 \end{equation}
 \end{fleqn}
@@ -2984,7 +2984,7 @@ The area of the the production tubing cross section is computed from the product
 
 \begin{minipage}{0.6\columnwidth}
 \begin{fleqn}[0pt]
-\begin{equation} \label{eq:avg_wellbore_pressure}
+\begin{equation} \label{eq:tubing_volume}
 V_{W} =  \pi \left(\frac{D_{W}}{2}\right)^2 D_w  \quad\quad\eqnunit{psi}
 \end{equation}
 \end{fleqn}
@@ -3004,7 +3004,7 @@ The volume-weighted density of fluids in the wellbore is computed as:
 
 \begin{minipage}{0.6\columnwidth}
 \begin{fleqn}[0pt]
-\begin{equation} \label{eq:avg_wellbore_pressure}
+\begin{equation} \label{eq:avg_wellbore_density}
 \rho_{avg} =  \rho_o \frac{V_{o}}{V_{tot}}+ \rho_w \frac{V_{w}}{V_{tot}} + \rho_g \frac{V_{g}}{V_{tot}} \quad\quad\eqnunit{psi}
 \end{equation}
 \end{fleqn}
@@ -4851,7 +4851,7 @@ where $h_{ws,l}$ and $h_{ws,g}$ [MJ/kg] are enthalpy of saturated water of liqui
 %%%%%%%%%%%%%%
 \begin{minipage}{0.6\columnwidth}
 \begin{fleqn}[0pt]
-\begin{equation}\label{eq:steam_h_mixed}
+\begin{equation}\label{eq:steam_h_mixed_gen_outlet}
 h_{ws,m} = h_{ws,g}X_{g} + h_{ws,l}(1-X_{g}) \quad\eqnunitfrac{MJ}{kg}
 \end{equation}
 \end{fleqn}
@@ -4897,7 +4897,7 @@ The enthalpy of steam injected, $h_{ws,inj}$, at desired steam quality $X_{d}$ i
 %%%%%%%%%%%%%%
 \begin{minipage}{0.6\columnwidth}
 \begin{fleqn}[0pt]
-\begin{equation}\label{eq:steam_h_mixed}
+\begin{equation}\label{eq:steam_h_mixed_after_blowdown}
 h_{ws,inj} = h_{ws,g}X_{d} + h_{ws,l}(1-X_{d}) \quad\eqnunitfrac{MJ}{kg}
 \end{equation}
 \end{fleqn}
@@ -4921,7 +4921,7 @@ Blow-down water leaves steam separators at the same temperature of the separated
 %%%%%%%%%%%%%%
 \begin{minipage}{0.6\columnwidth}
 \begin{fleqn}[0pt]
-\begin{equation}\label{eq:steam_h_mixed}
+\begin{equation}\label{eq:blowdown_recovery}
 h_{r,bd} = \eta_{bd}(h_{ws,f} - h_{w,out}) \quad\quad\eqnunitfrac{MJ}{kg}
 \end{equation}
 \end{fleqn}
@@ -5141,7 +5141,7 @@ API gravity & $a_H$ \\
 \end{table}
 
 % issue 8: below figure is not found
-The mass fraction of sulfur and other contaminants decreases with increasing API gravity, as seen in Figure \ref{fig:crude_contaminants} \cite[Ch. 8, tables 3, 4]{speight1994} \cite[Ch. 7, tables 2, 3, and 19]{speight1994} \cite{swafford2009}. We therefore include default values of $w_S$ that vary with API gravity from 5 wt.\% (API gravity 4-5) to 0.5 wt.\% (API gravity greater than 35). Nitrogen and oxygen content $w_N + w_O$ is assumed constant at 0.2 wt.\% and in element balance it is assumed to be entirely made up of N. Mass fraction carbon $w_C$ is calculated by difference using above mass fractions. Using the relative molar proportions of C, H, S, and N, the stoichiometric oxygen demand per carbon atom is computed assuming complete combustion. 
+The mass fraction of sulfur and other contaminants decreases with increasing API gravity \cite[Ch. 8, tables 3, 4]{speight1994} \cite[Ch. 7, tables 2, 3, and 19]{speight1994} \cite{swafford2009}. We therefore include default values of $w_S$ that vary with API gravity from 5 wt.\% (API gravity 4-5) to 0.5 wt.\% (API gravity greater than 35). Nitrogen and oxygen content $w_N + w_O$ is assumed constant at 0.2 wt.\% and in element balance it is assumed to be entirely made up of N. Mass fraction carbon $w_C$ is calculated by difference using above mass fractions. Using the relative molar proportions of C, H, S, and N, the stoichiometric oxygen demand per carbon atom is computed assuming complete combustion. 
 
 Using the oxygen requirement for combustion and the excess air ratio $R_{a,comb}$, the lbmol of air required is computed similarly to eq.\ \eqref{eq:steam_N_real_comb} above. The inlet air enthalpy for combustion is computed using eq.\ \eqref{eq:steam_h_gas} above. The outlet exhaust composition is computed via element balance assuming complete oxidation (including S to SO$_2$). The outlet exhaust enthalpy is computed as in eq.\ \eqref{eq:steam_h_gas} for gaseous fuels combustion. The energy balance for combustion of liquid fuels is computed as in eq.\ \eqref{eq:steam_hcomb}.
 
@@ -5521,15 +5521,15 @@ Because the efficiency of combustion \eqref{eq:flare_eta} has an exponential dep
 \begin{center}
 \subfigure[]{\label{fig:winda}\includegraphics[width=0.48\columnwidth]{images/wind1.pdf}}
 \hfill
-\subfigure[]{\label{fig:winda}\includegraphics[width=0.48\columnwidth]{images/wind2.pdf}}
+\subfigure[]{\label{fig:windb}\includegraphics[width=0.48\columnwidth]{images/wind2.pdf}}
 \hfill
-\subfigure[]{\label{fig:winda}\includegraphics[width=0.48\columnwidth]{images/wind3.pdf}}
+\subfigure[]{\label{fig:windc}\includegraphics[width=0.48\columnwidth]{images/wind3.pdf}}
 \hfill
-\subfigure[]{\label{fig:winda}\includegraphics[width=0.48\columnwidth]{images/wind4.pdf}} 
+\subfigure[]{\label{fig:windd}\includegraphics[width=0.48\columnwidth]{images/wind4.pdf}} 
 \hfill
-\subfigure[]{\label{fig:winda}\includegraphics[width=0.48\columnwidth]{images/wind5.pdf}} 
+\subfigure[]{\label{fig:winde}\includegraphics[width=0.48\columnwidth]{images/wind5.pdf}} 
 \hfill
-\subfigure[]{\label{fig:winda}\includegraphics[width=0.48\columnwidth]{images/wind6.pdf}}
+\subfigure[]{\label{fig:windf}\includegraphics[width=0.48\columnwidth]{images/wind6.pdf}}
 \caption{Rayleigh distribution fit to 6 wind speed datasets from western United States. Data source: NREL Western Wind Integration Dataset.}
 \label{fig:wind_fits}
 \end{center}
@@ -5545,7 +5545,7 @@ The probability density curve for the Rayleigh distribution is calculated from t
 
 \begin{minipage}{0.7\columnwidth}
 \begin{fleqn}[0pt]
-\begin{equation} \label{eq:flaring_volume}
+\begin{equation} \label{eq:Rayleigh}
 p(U) = \frac{U}{m_{U}} \textrm{exp}\left[-\frac{1}{2}\left(\frac{U^2}{m_U^2}\right)\right] \quad\quad\eqnunit{-}
 \end{equation}
 \end{fleqn}
@@ -6014,7 +6014,7 @@ Default values for flaring calculations are shown in \ref{tab:secondary_inputs_g
     $\eta_{pump,dehyd.}$   & Glycol pump efficiency  & \xlname{eta\_glycolpump\_dehydrator} & 75 & 60-80  & [\%] & Assumption  & -  \\
     $y_{reboil,dehyd.}$   & Type of reboiler heater  & \xlname{Type\_reboiler\_dehydrator} & 1 & 1,2 & [binary 1-2] & Assumption  & -  \\
      $T_{feed,dehyd.}$  & Regeneration feed temperature  & \xlname{Temperature\_regeneration\_dehydrator} & 200 & 150-300 & [$^\circ$F] & Assumption  & -  \\
-     \eta_{reboiler,dehyd.}  & Reboiler heater fuel use  & \xlname{Eta\_reboiler\_dehydrator} & 1.25 & 1-1.5 & [btu/btu] & Assumption  & -  \\
+     $\eta_{reboiler,dehyd.}$  & Reboiler heater fuel use  & \xlname{Eta\_reboiler\_dehydrator} & 1.25 & 1-1.5 & [btu/btu] & Assumption  & -  \\
      $RR_{dehyd.}$   & Reflux ratio  & \xlname{Ratio\_reflux\_dehydrator} & 2.25 & 2-2.5 & [-] & Assumption  & -  \\
       $\Delta T_{air,dehyd.}$   & Air cooler delta T, air side  & \xlname{delta\_temperature\_aircooler\_dehydrator} & 40 & 30-50 & [$^\circ$F] & Assumption  & -  \\
      $\Delta p_{air,dehyd.}$    & Air cooler pressure drop  & \xlname{delta\_pressure\_aircooler\_dehydrator} & 0.6 & 0.4-0.5 & [in. H2O] & Assumption  & -  \\
@@ -6377,7 +6377,6 @@ $x_{H_{2}S}$     & H$_2$S gas composition & \xlname{Gas\_comp\_H2S} & 1 & var. &
 \tablelasttail{\bottomrule}
 \tablecaption{Secondary inputs used in \sheet{Acid Gas Removal} sheet.}
 \label{tab:secondary_inputs_AGR}
-\begin{twoparttable}
 \begin{supertabular*}{1\columnwidth}{p{0.05\columnwidth}p{0.2\columnwidth}p{0.25\columnwidth}p{0.03\columnwidth}p{0.03\columnwidth}p{0.12\columnwidth}p{0.05\columnwidth}p{0.01\columnwidth}}
     $y_{AGR}$  & AGR modeling method & \xlname{Model\_type\_AGR} & 1	& 1-2  & [binary 1-2] & Assumption  &  \\
     $y_{amine}$   & Amine solution & \xlname{Type\_amine\_AGR} & 2	& 1-6  & [-] & Assumption  & \\
@@ -6386,17 +6385,12 @@ $x_{H_{2}S}$     & H$_2$S gas composition & \xlname{Gas\_comp\_H2S} & 1 & var. &
      $K_{AGR}$ & Amine solution K value & \xlname{Kvalue\_amine\_AGR} & 2.05 & 0.95-2.05 & [gpm-d/100mmscf] & \cite[p. 115]{Manning1991} & a\\
        $p_{feed,AGR}$   & Feed gas pressure & \xlname{Pressure\_feedgas\_AGR} & 200	& 150-250  & [psia]  & Assumption  &  \\
        $p_{AGR}$ & Operating pressure & \xlname{Pressure\_operating\_AGR} & 350	& 300-400  & [psi]  & Assumption  &  \\
-       \eta_{reboiler,AGR} & Reboiler Gas-fired heater fuel use & \xlname{eta\_reboiler\_AGR} & 1.25	& 1-2  & [btu/btu]  & Assumption  &  \\
-    $\Delta T_{cooler,AGR}$    & Air cooler delta T, air side & \xlname{delta\_temperature\_aircooler\_AGR} & 40	& 30-50  & {[}$^\circ$F{]} & Assumption  &  \\
+       $\eta_{reboiler,AGR}$ & Reboiler Gas-fired heater fuel use & \xlname{eta\_reboiler\_AGR} & 1.25	& 1-2  & [btu/btu]  & Assumption  &  \\
+    $\Delta T_{cooler,AGR}$    & Air cooler delta T, air side & \xlname{delta\_temperature\_aircooler\_AGR} & 40	& 30-50  & [$^\circ$F] & Assumption  &  \\
       $\Delta p_{cooler,AGR}$    & Air cooler pressure drop & \xlname{delta\_pressure\_aircooler\_AGR} & 0.6	& 0.5-0.7  & [in. H2O] & Assumption  & \\
+      \multicolumn{8}{p{1\columnwidth}}{\emph{a} - The default is monoethanolamine (MEA).}\\
 \end{supertabular*}
-\multicolumn{8}{p{1\columnwidth}}{\emph{a} - The default is monoethanolamine (MEA).}\\
-%\begin{tablenotes}
-%\item[a] Insert text of note here
-%\end{tablenotes}
-\end{twoparttable}
 \end{tiny}
-
 \end{landscape}
 
 \clearpage
@@ -6719,10 +6713,10 @@ Default values for flaring calculations are shown in Tables \ref{tab:primary_inp
     $y_{demeth.}$  & Method of modeling & \xlname{Model\_type\_demethanizer} & 1	& 1-2  & [binary 1-2] & Assumption  &  \\
     $p_{demet.}$  & Demethanizer column pressure & \xlname{Pressure\_demethanizer\_col} & 240	& 230-250  & [psi] & Assumption  &  \\
     $f_{c_{1}/NGL,demeth.}$  & Methane to ethane NGL composition molar ratio at NGL product stream & \xlname{Ratio\_NGL\_product} & 0	& var.  & [-] & Assumption  &  \\
-     \eta_{reboiler,demeth.} & Reboiler gas-fired heater fuel use & \xlname{eta\_reboiler\_demethanizer} & 1.3	& 1-1.5  & [Btu/Btu] & Assumption  &  \\
+     $\eta_{reboiler,demeth.}$ & Reboiler gas-fired heater fuel use & \xlname{eta\_reboiler\_demethanizer} & 1.3	& 1-1.5  & [Btu/Btu] & Assumption  &  \\
       $\Delta T_{cooler,demeth.}$ & Air cooler delta T, air side & \xlname{delta\_temperature\_aircooler\_demethanizer} & 40	& 30-50  & [$^\circ$F]  & Assumption  &  \\
-      $\Delta p_{cooler,demeth.}$ & Air cooler pressure drop & \xlname{delta\_pressure\_aircooler\_demethanizer} & 0.6	& 0.5-0.7  & [in. H_{2}O]  & Assumption  &  \\
-      $\eta _{comp.,demeth.}$ & Compressor efficiency & \xlname{eta\_compressor\_demeth} & 75	& 70-80  & [\%]  & Assumption  &  \\
+      $\Delta p_{cooler,demeth.}$ & Air cooler pressure drop & \xlname{delta\_pressure\_aircooler\_demethanizer} & 0.6	& 0.5-0.7  & [in. H$_{2}$O]  & Assumption  &  \\
+      $\eta_{comp.,demeth.}$ & Compressor efficiency & \xlname{eta\_compressor\_demeth} & 75	& 70-80  & [\%]  & Assumption  &  \\
      $y_{p. mover,demeth.}$   & Prime mover type & \xlname{Prime\_mover\_type\_demeth} & 2	& 1,2  & [binary 1-2]  & Assumption  &  \\
       $f_{g/heavy,demth}$    & Fractions of gas to demethanizer product heavy streams & \xlname{Composition\_demethanizer\_heavy} & var.	& var.  & [mol frac.]  & Assumption  &  \\
         $f_{g/light,demth}$     & Fractions of gas to demethanizer product light streams & \xlname{Composition\_demethanizer\_light} & var.	& var.  & [mol frac.]  & Assumption  &  \\
@@ -6815,7 +6809,7 @@ Default values for chiller calculations are shown in Tables \ref{tab:secondary_i
 \begin{threeparttable}
 \begin{supertabular*}{1\columnwidth}{p{0.05\columnwidth}p{0.3\columnwidth}p{0.25\columnwidth}p{0.05\columnwidth}p{0.05\columnwidth}p{0.05\columnwidth}p{0.05\columnwidth}p{0.025\columnwidth}}
      $T_{out,chiller}$ & Chiller outlet temperature & \xlname{Temperature\_chiller\_outlet} & 35	& 30-40  & [$^\circ$F] & \cite{NETLChillerModel}  & -  \\
-      ER_{chiller,fug.} & Chiller fugitive emissions rate & \xlname{Fug\_emissions\_chiller} & 0	& 0-5  & [\%] & Assumption  & -  \\
+      $ER_{chiller,fug.}$ & Chiller fugitive emissions rate & \xlname{Fug\_emissions\_chiller} & 0	& 0-5  & [\%] & Assumption  & -  \\
       
 \end{supertabular*}
 %\begin{tablenotes}
@@ -6989,7 +6983,7 @@ Default values for Ryan-Holmes unit calculations are shown in Tables \ref{tab:se
 \label{tab:secondary_inputs_RH}
 \begin{threeparttable}
 \begin{supertabular*}{1\columnwidth}{p{0.05\columnwidth}p{0.3\columnwidth}p{0.25\columnwidth}p{0.05\columnwidth}p{0.05\columnwidth}p{0.05\columnwidth}p{0.05\columnwidth}p{0.025\columnwidth}}
-     H_{backup,R-H} & Backup diesel engine daily usage & \xlname{Daily\_Usage\_Engine\_RyanHolmes} & 2.6	& 2-3  & [h/d] & \cite{NETLRyanHolmesModel}  &  \\
+     $H_{backup,R-H}$ & Backup diesel engine daily usage & \xlname{Daily\_Usage\_Engine\_RyanHolmes} & 2.6	& 2-3  & [h/d] & \cite{NETLRyanHolmesModel}  &  \\
    $x_{g,R-H}$   & Ryan-Holmes gas fractions & \xlname{Composition\_Ryan\_Holmes} & VAR.	& 0-1  & [mol. frac.] & \cite{NETLRyanHolmesModel}  & \\
 \end{supertabular*}
 %\begin{tablenotes}
@@ -7045,7 +7039,7 @@ The energy consumed by gas reinjection compressors is a function of the compress
 The total gas compression ratio is calculated using: 
 %%%%%%%%%%
 \begin{equation} \label{eq:compression_ratio}
-R_{C} = \frac{p_{d}}{p_{s}} \begin{footnotesize} \quad\quad\eqnunit{-}
+R_{C} = \frac{p_{d}}{p_{s}} \begin{footnotesize} \quad\quad\eqnunit{-} \end{footnotesize}
 \end{equation}
 %%%%%%%%%%
 where $p_{d}$ = discharge pressure [psia]; and $p_{s}$ = suction pressure [psia]. 
@@ -7053,7 +7047,7 @@ where $p_{d}$ = discharge pressure [psia]; and $p_{s}$ = suction pressure [psia]
 Multi-stage compression applies when \textit{R$_C$} > 5 \cite[p. 295]{Mcallister2009}. The compression of gas generates significant amount of heat, but compressors can only handle a limited temperature change. Multiple stage compressors allow cooling between stages making compression less adiabatic and more isothermal. OPGEE sets the compression ratio for each of the $N$ stages equal to the $N^{th}$ root of the total compression ratio \cite[p. 295]{Mcallister2009}:
 %%%%%%%%%%
 \begin{equation} \label{eq:compression_stages}
-\text{If} \,\,\frac{p_{d}}{p_{s}}\, \textless \, 5, \,\, \text{then}\,\, R_C=\frac{p_{d}}{p_{s}},\,\, \text{otherwise if}\,\,\left(\frac{p_{d}}{p_{s}}\right)^{\frac{1}{2}}\, \textless \,5,\,\,\text{then}\,\, R_C=\left(\frac{p_{d}}{p_{s}}\right)^{\frac{1}{2}},\,\,... 
+\text{If} \,\,\frac{p_{d}}{p_{s}}\, \textless \, 5, \,\, \text{then}\,\, R_C=\frac{p_{d}}{p_{s}},\,\, \text{otherwise if}\,\,\left(\frac{p_{d}}{p_{s}}\right)^{\frac{1}{2}}\, < \,5,\,\,\text{then}\,\, R_C=\left(\frac{p_{d}}{p_{s}}\right)^{\frac{1}{2}},\,\,... 
 \quad\quad\eqnunit{-}
 \end{equation}
 %%%%%%%%%%
@@ -7067,7 +7061,7 @@ In the case of gas reinjection compressors, the discharge pressure is estimated 
 
 \begin{minipage}{0.6\columnwidth}
 \begin{fleqn}[0pt]
-\begin{equation} \label{eq:avg_wellbore_pressure}
+\begin{equation} \label{eq:gas_reinject_discharge_pressure}
 p_{d} = p_{R} + p_{atm} + 500  \quad\quad\eqnunit{psia}
 \end{equation}
 \end{fleqn}
@@ -7087,7 +7081,7 @@ where 500 psi is added to the reservoir pressure to ensure adequate flow rates i
 
 For the first stage of the gas reinjeciton compressor, the suction temperature is simply the inlet stream temperature. In the gas of gas reinjection, this is the temperature of Stream \stream{46}, or \xlname{INDEX(FlowTable,T,46)}. The suction temperature is converted to absolute temperature (R). The pseudo-reduced temperature is computed by dividing the absolute temperature by the pseudo-critical temperature \xlname{T\_PCC} which is computed via equation \ref{eq:Tpc} above for each gas stream and looked up from the flow table as \xlname{INDEX(FlowTable,T\_PCC),46}.
 
-Next the Z-factor for the stream is computed using the user-defined function \xlname{zfactor}, which is described above in Section \label{sec:zfactor}. The \xlname{zfactor} user-defned function takes as arguments the inlet reduced temperature and inlet reduced pressure.
+Next the Z-factor for the stream is computed using the user-defined function \xlname{zfactor}, which is described above in Section \ref{sec:zfactor}. The \xlname{zfactor} user-defned function takes as arguments the inlet reduced temperature and inlet reduced pressure.
 
 \subsubsection{Compressor adiabatic work of compression}
 
@@ -7265,9 +7259,9 @@ Reservoir Temperature {[}$^{\circ}$F{]} & Adjustment {[}psia{]}\tabularnewline
 \subsubsection{CO$_2$ Enhanced oil recovery and sequestration parameters}\label{sec:Sequestration}
 
 \paragraph{CO$_2$ sequestration calculation} \label{par:IntroSeq}
-In the early stage of a CO$_2$ flood project, newly acquired CO$_2$ will account for the entirety of the injected CO$_2$. As the injected CO$_2$ proceeds through the reservoir, a proportion of it will be trapped in the reservoir by factors such as blockage by surrounding rocks of low permeability or by trapping within water in the reservoir. The portion of CO$_2$ that is not immediately trapped will be produced and injected again following its separation from the oil and/or associated gas stream, if applicable, as described in the \nameref{sec:} section. Thus, following CO$_2$ breakthrough the injected CO$_2$ will consist of two portions: 1) a newly acquired, never-injected portion and 2) a previously-injected and recycled portion. 
+In the early stage of a CO$_2$ flood project, newly acquired CO$_2$ will account for the entirety of the injected CO$_2$. As the injected CO$_2$ proceeds through the reservoir, a proportion of it will be trapped in the reservoir by factors such as blockage by surrounding rocks of low permeability or by trapping within water in the reservoir. The portion of CO$_2$ that is not immediately trapped will be produced and injected again following its separation from the oil and/or associated gas stream, if applicable. Thus, following CO$_2$ breakthrough the injected CO$_2$ will consist of two portions: 1) a newly acquired, never-injected portion and 2) a previously-injected and recycled portion. 
 
-% issue 10: which section is referred in the above paragraph?
+
 An individual molecule of CO$_2$ injected for EOR may thus transit the reservoir and the surface processing facilities multiple times before it is trapped within the reservoir. OPGEE assumes that a molecule of newly acquired CO$_2$ will ultimately be sequestered within the reservoir. An example demonstrating this process is the EOR project at the Denver Unit of the Wasson Field in the Texas Permian Basin, where Occidental Petroleum has injected CO$_2$ since the early 1980s \cite{Oxy2015}. In a presentation submitted to California's Energy Commission, Occidental Petroleum depicts an accounting of the volume of CO$_2$ acquired, injected, produced, trapped, recycled, and lost to venting and fugitive emissions during a 25-year period at the Denver Unit flood \cite{Oxy2012}. Occidental Petroleum indicates that 115 million metric tons of CO$_2$ were supplied to the project; their material balance calculations indicated that essentially an equivalent amount was sequestered in the reservoir. Venting and fugitives accounted for the loss of 0.3\% of the cumulative volume of produced or recycled CO$_2$ \cite{Oxy2012}. 
 
 OPGEE accounts for loss of CO$_2$ due to terminal blow-down operations or long-term leakage from the reservoir. These factors decrease the overall sequestration rate and are included in the \nameref{sec:GHG_emissions} section. The gross (before deduction of aforementioned losses) daily CO$_2$ is calculated as follows:
@@ -7384,11 +7378,11 @@ $Q_0$ & Oil production volume & \xlname{Oil\_prod} & 1500 & 10-3,000,000 & [bbl/
  $x_{g,offsite}$  & Offsite hydrocarbon gas composition & \xlname{Composition\_offsite\_HC\_gas} &  var. & var.  & [mol. \%] & Assumption & \\
   $T_{g,offsite}$   & Offsite hydrocarbon gas temperature & \xlname{Temperature\_offsite\_gas} &  60 & 50-70  & {[}$^{\circ}$F{]} & Assumption & \\
   $p_{g,offsite}$    & Offsite hydrocarbon gas pressure & \xlname{Pressure\_offsite\_gas} &  600 & 550-650  & [psia] & Assumption & \\
-    E_{air sep.}  & Air separation unit electricity consumption (cryogenic N2 gas production) & \xlname{Energy\_intensity\_airseparation} &  0 & var.  & [kWh/scf] & Assumption & \\
+    $E_{air sep.}$  & Air separation unit electricity consumption (cryogenic N2 gas production) & \xlname{Energy\_intensity\_airseparation} &  0 & var.  & [kWh/scf] & Assumption & \\
     $T_{N2,offsite}$   & Offsite N2 temperature & \xlname{Temperature\_offsite\_N2} &  197 & 190-200  & {[}$^{\circ}$F{]} & Assumption & \\
     $p_{N2,offsite}$  & Offsite N2 pressure & \xlname{Pressure\_offsite\_N2} &  125 & 110-130  & [psia] & Assumption & \\
-    L_{CO2,seq.} & Long-term leakage rate of sequestered carbon from reservoir & \xlname{Leakage\_rate\_sequestered\_CO2} &  0.5 & var.  & [\%] & Assumption & \\
-     P_{CO2,released}    & Proportion of sequestered CO2 released from reservoir during post-production blow-down & \xlname{fraction\_CO2\_lost\_blowdown} &  0 & var. & [\%] & Assumption & \\
+    $L_{CO2,seq.}$ & Long-term leakage rate of sequestered carbon from reservoir & \xlname{Leakage\_rate\_sequestered\_CO2} &  0.5 & var.  & [\%] & Assumption & \\
+     $P_{CO2,released}$    & Proportion of sequestered CO2 released from reservoir during post-production blow-down & \xlname{fraction\_CO2\_lost\_blowdown} &  0 & var. & [\%] & Assumption & \\
       $T_{CO2,offsite}$   & Offsite CO2 temperature & \xlname{Temperature\_offsite\_CO2} &  60 & 50-70 & {[}$^{\circ}$F{]} & Assumption & \\
      $\eta_{comp.,flood}$     & Compressor efficiency & \xlname{eta\_compressor\_flooding} & 75 & 70-78  & [\%] & Assumption & \\
          $p_{CO2,offsite}$     & Offsite CO2 pressure & \xlname{Pressure\_offsite\_CO2} & 600 & 550-650  & [psia] & Assumption & \\
@@ -7524,7 +7518,7 @@ The default settings for the parameters for the CO$_2$ reinjection compressor ar
 \toprule
 Flow name							& Stream   			& I/O 	& Source/Destination       			& Units 			&  Notes\\ 
 \midrule
-AGR CO2 to reinjection					& \stream{73}			& I		& Acid gas removal				& [t/d]			&			\\
+AGR CO$_2$ to reinjection					& \stream{73}			& I		& Acid gas removal				& [t/d]			&			\\
 CO2-rich stream from membrane			& \stream{65}			& I		& CO2 separation membrane				& [t/d]			&			\\
 CO2 stream from Ryan-Holmes				& \stream{69}			& I		& Ryan-Holmes process				& [t/d]			&			\\
 Fuel gas - CO2 reinjection compressor		& \stream{155}			& I		& Fuel gas system			& [t/d]			&			\\
@@ -7905,7 +7899,7 @@ $\eta_{transm.}$   & Efficiency of pre-membrane compressor              & \xlnam
 Natural gas is converted to liquefied natural gas (LNG) for the purposes of storage or transportation if pipeline transport is not feasible (usually in the case of intercontinental transport). Natural gas cannot be compressed to a liquid at normal ambient temperature. Therefore, the LNG liquefaction process takes place at below -162$^{\circ}$C. LNG is transported in cryogenic tanks aboard LNG carriers, and once reaching a regasification terminal is injected back into the pipeline system.
 The LNG module in OPGEE is composed of three separate sections: LNG liquefaction, LNG transport, and LNG regasification. Stream flows between the three processes are shown in Figure \ref{fig:LNG_flows}. We assume that no additional pre-processing is required beyond what is already included in OPGEE.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=1\columnwidth]{documentation/images/Liquefaction_flow.jpg}
 \caption{Streams flowing into and out of LNG liquefaction, LNG transport, and LNG regasification processes.}
 \label{fig:LNG_flows}
@@ -7915,7 +7909,7 @@ The LNG module in OPGEE is composed of three separate sections: LNG liquefaction
 
 Energy, flaring, and fugitives intensity of liquefaction is modelled based on a literature review conducted by Roda-Stuart \cite{RodaStuart2018}. Roda-Stuart reports an estimated refrigeration power requirement, an estimated ancillary load power requirement, and flaring and fugitives rates (Table \ref{tab:liquefaction}). Both values are an average of energy requirements reported for LNG facilities in Australia (Gladstone, Gorgon), Norway (Snohvit), Qatar (QatarGas 1, 3), and Canada (LNG Canada, Pacific NW LNG).
 
-\begin{table}[h]
+\begin{table}[ht]
 \begin{scriptsize}
 \caption{Intensity factors used in LNG liquefaction calculations}
 \label{tab:liquefaction}
@@ -7978,7 +7972,7 @@ In order to turn on energy consumption and emissions in the \sheet{LNG Transport
 
 Abrahams et al. \cite{abrahams2015} assume that 3\% of natural gas energy content is required to regasify LNG.
 
-\begin{table}[h]
+\begin{table}[ht]
 \begin{scriptsize}
 \caption{Intensity factors used in LNG regasification calculations}
 \label{tab:regas}
@@ -8408,7 +8402,7 @@ The \sheet{Gas partition B} sheet serves to record the gas partitioning between 
 
 \begin{minipage}{0.6\columnwidth}
 \begin{fleqn}[0pt]
-\begin{equation} \label{eq:flare_emissions_stripping}
+\begin{equation} \label{eq:gas_partition_b}
 m_{x,\mstream{43}} = \left(1 - GLIR\right) m_{x,\mstream{41}} \eqnunitfrac{t}{d}
 \end{equation}
 \end{fleqn}
@@ -8461,7 +8455,7 @@ Gas consumption quantities are recorded at the bottom of each sheet in units of 
 
 \begin{minipage}{0.6\columnwidth}
 \begin{fleqn}[0pt]
-\begin{equation} \label{eq:flare_emissions_stripping}
+\begin{equation} \label{eq:gas_consumption_quantities}
 m_{tot,\mstream{43}} = \frac{\sum_i E_i}{LHV_{g,\mstream{43}}}  \eqnunit{t}
 \end{equation}
 \end{fleqn}
@@ -8614,7 +8608,7 @@ where $GWP_i$ = GWP of species $i$.
 The total energy consumption from transport is computed using the distances and fractions of transport, along with the mode-specific energy intensity of transport:
 %%%%%%%%%%%%%%%%
 \begin{equation}\label{eq:trans_Etr}
-& E_{TR} = \sum_{j} \lambda_j D_{j} UE_{j} \quad\quad (j \in T,B,P,R) \\
+ E_{TR} = \sum_{j} \lambda_j D_{j} UE_{j} \quad\quad (j \in T,B,P,R) \\
 \quad\quad\eqnunitfrac{Btu}{mmBtu} 
 \end{equation}
 %%%%%%%%%%%%%%%%
@@ -8623,7 +8617,7 @@ where $D_j$ = distance of crude oil transport in mode $j$ [mi]; $UE_{j}$ = energ
 The total emissions are calculated identically:
 %%%%%%%%%%%%%%%%
 \begin{equation}\label{eq:trans_Emtr}
-&EM_{TR} = \sum_{j} \lambda_j D_{j} EM_{j} \quad\quad (j \in T,B,P,R) \\
+EM_{TR} = \sum_{j} \lambda_j D_{j} EM_{j} \quad\quad (j \in T,B,P,R) \\
 \quad\quad\eqnunitfrac{g CO$_2$ eq}{mmBtu}
 \end{equation}
 %%%%%%%%%%%%%%%%
@@ -8689,7 +8683,7 @@ $u_{B}$   & Barge tanker speed & \xlname{Speed\_tanker}  & 5	& var. 	& [mi/hr] &
   
 $l_{T,o-d}$  & Ocean tanker load factor (origin to destination) & \xlname{Load\_factor\_to\_dest\_tanker}  & 0.8	& var. 	& [-] & Assumption   & \\
 $l_{B,o-d}$   & Barge load factor (origin to destination) & \xlname{Load\_factor\_to\_dest\_barge}  & 0.8	& var. 	& [-] & Assumption   & \\
- $l_{T,d-o}$  & Ocean tanker load factor (destination to origin) & \xlname{Load\_factor\_to_orig\_tanker}  & 0.7	& var. 	& [-] & Assumption   & \\
+ $l_{T,d-o}$  & Ocean tanker load factor (destination to origin) & \xlname{Load\_factor\_to\_orig\_tanker}  & 0.7	& var. 	& [-] & Assumption   & \\
   $l_{B,d-o}$   & Barge load factor (destination to origin) & \xlname{Load\_factor\_to\_orig\_barge}  & 0.6	& var. 	& [-] & Assumption   & \\
     
  $o-d$   & Origin to destination & \xlname{Energy\_intensity\_rail\_to\_dest}  & 370	& var. 	& [btu/ton-mi] & Assumption   & \\
@@ -8707,8 +8701,8 @@ $l_{B,o-d}$   & Barge load factor (origin to destination) & \xlname{Load\_factor
     $\epsilon_{feed}$ & Feed losses: btu/mmBtu fuel transported & \xlname{Losses\_feed}  & 62 & var.	& [Btu/mmBtu transported] & Assumption   & \\
 
 \end{supertabular*}
-\begin{tablenotes}
-\end{tablenotes}
+%\begin{tablenotes}
+%\end{tablenotes}
 \end{threeparttable}
 \end{tiny}
 
@@ -8763,7 +8757,7 @@ The default settings for the parameters for crude oil transport are given below 
  	        
  	    $l_{T,o-d}$    & Ocean tanker load factor (origin to destination) & \xlname{Load\_factor\_to\_dest\_tanker}  & 0.8	& var. 	& [] & Assumption   & \\
  	      $l_{B,o-d}$   & Barge load factor (origin to destination) & \xlname{Load\_factor\_to\_dest\_barge}  & 0.8	& var. 	& [] & Assumption   & \\
- 	    $l_{T,d-o}$    & Ocean tanker load factor (destination to origin) & \xlname{Load\_factor\_to_orig\_tanker}  & 0.7	& var. 	& [] & Assumption   & \\
+ 	    $l_{T,d-o}$    & Ocean tanker load factor (destination to origin) & \xlname{Load\_factor\_to\_orig\_tanker}  & 0.7	& var. 	& [] & Assumption   & \\
  	     $l_{B,d-o}$   & Barge load factor (destination to origin) & \xlname{Load\_factor\_to\_orig\_barge}  & 0.6	& var. 	& [] & Assumption   & \\
  	        
  	         $EI_R$ & Energy intensity of rail transport & \xlname{Energy\_intensity\_rail\_to\_dest\_pettransport}  & 370	& var. 	& [btu/ton-mi] & Assumption   & \\
@@ -8773,8 +8767,8 @@ The default settings for the parameters for crude oil transport are given below 
  	           $\epsilon_{feed}$  & Feed losses: btu/mmBtu fuel transported & \xlname{Losses\_feed}  & 62 & var.	& [btu/mmBtu transported] & Assumption   & \\
 
 \end{supertabular*}
-\begin{tablenotes}
-\end{tablenotes}
+%\begin{tablenotes}
+%\end{tablenotes}
 \end{threeparttable}
 \end{tiny}
 
@@ -8812,8 +8806,8 @@ $\epsilon_{customer}$ & Loss fraction at customer meter  & \xlname{Losses\_custo
 $\epsilon_{equ.}$ & Loss fraction at end use appliance or equipment  & \xlname{Losses\_enduse}  & 0.001 	& var. 	& [\%] & Assumption   & \\
  	     
 \end{supertabular*}
-\begin{tablenotes}
-\end{tablenotes}
+%\begin{tablenotes}
+%\end{tablenotes}
 \end{threeparttable}
 \end{tiny}
 
@@ -8852,8 +8846,8 @@ $T_{g,dist.}$    & Distributed gas temperature  & \xlname{Temperature\_gasdistri
 $p_{g,dist.}$   & Distributed gas pressure  & \xlname{Pressure\_gasdistributed}  & 150 	& 100-200 	& [psia] & Assumption   & \\
  	     
 \end{supertabular*}
-\begin{tablenotes}
-\end{tablenotes}
+%\begin{tablenotes}
+%\end{tablenotes}
 \end{threeparttable}
 \end{tiny}
 
@@ -8914,13 +8908,13 @@ The default settings for parameters for electricity generation and imports is gi
 \begin{supertabular*}{1\columnwidth}{p{0.05\columnwidth}p{0.25\columnwidth}p{0.25\columnwidth}p{0.05\columnwidth}p{0.05\columnwidth}p{0.05\columnwidth}p{0.05\columnwidth}p{0.05\columnwidth}}
 
 $y_{gen.}$ & Onsite generator type & \xlname{Generator\_type}  & 1	& 1-3 	& [-] & Assumption   & \\
- $Y_{grid}$ & Grid electricity mix and efficiencies & \xlname{Electricity\_mix_grid}  & var.	& var. 	& [-] & Assumption   & \\
+ $Y_{grid}$ & Grid electricity mix and efficiencies & \xlname{Electricity\_mix\_grid}  & var.	& var. 	& [-] & Assumption   & \\
 $\eta_{grid,dis.}$  & Grid transmission efficiency for displaced electricity & \xlname{eta\_grid\_displaced}  & 93.5	& 90-95 	& [\%] & Assumption   & \\
 $\eta_{grid,purch.}$ & Grid transmissions efficiency for purchased grid electricity & \xlname{eta\_grid\_purchased}  & 93.5	& 90-95 	& [\%] & Assumption   & \\
  	     
 \end{supertabular*}
-\begin{tablenotes}
-\end{tablenotes}
+%\begin{tablenotes}
+%\end{tablenotes}
 \end{threeparttable}
 \end{tiny}
 
@@ -8961,8 +8955,8 @@ The default settings for the parameters for NGL or diluent production or imports
 $p_{diluent}$ & Imported diluent pressure & \xlname{Pressure\_import\_diluent}  & 14.7	& var. 	& [psia] & Assumption   & \\
 
 \end{supertabular*}
-\begin{tablenotes}
-\end{tablenotes}
+%\begin{tablenotes}
+%\end{tablenotes}
 \end{threeparttable}
 \end{tiny}
 
@@ -9013,8 +9007,8 @@ In the case where the overall efficiency of the electricity generator set is giv
 %%%%%%%%%%
 \begin{equation} \label{eq:calc_EC_eff}
 \begin{split}
-& e_{D} = \frac{3.6}{\eta_{GS}} \eta_{G} \quad\quad\eqnunitfrac{MJ}{bkW-hr}
-& e_{D} = \frac{e_{D} \cdot 947.8}{1.34} \quad\quad\eqnunitfrac{Btu}{bhp-hr}
+ e_{D} = \frac{3.6}{\eta_{GS}} \eta_{G} \quad\quad\eqnunitfrac{MJ}{bkW-hr}
+ e_{D} = \frac{e_{D} \cdot 947.8}{1.34} \quad\quad\eqnunitfrac{Btu}{bhp-hr}
 \end{split}
 \end{equation}
 %%%%%%%%%%
@@ -9376,6 +9370,7 @@ Reciprocating engine & \checkmark & \checkmark & & & & \\
 \subsection{Non-combustion emissions factors} \label{sec:VF_emissions_factors}
 
 % issue 13: which section is referred below? Are we still referencing ARB survey as the entire section is updated? Shouldn't we update this section entirely? 
+
 Section \ref{sec:VF} describes how emissions factors for venting and some fugitives sources are generated from the ARB survey data \cite{Lee2011}. Emissions factors from ARB are specified by gas component. The ARB survey data used to generate emissions factors for venting are shown in Table \,\ref{tab:ARB_venting_EF}.
 
 \begin{table}
@@ -9416,10 +9411,10 @@ Gathering\,\,pipelines pigging & 104 & 5 & 1417 \\
 The emissions factors for venting by gas component were calculated using ARB survey data as:
 %%%%%%%%%%
 \begin{equation}
-& EF_{CO_{2} Vent} = \frac{a_{EF_V}}{c_{EF_V}}\,10^{6} \quad\quad\eqnunitfrac{gl}{event} \text{etc.}
+ EF_{CO_{2} Vent} = \frac{a_{EF_V}}{c_{EF_V}}\,10^{6} \quad\quad\eqnunitfrac{gl}{event} \text{etc.}
 \end{equation}
 \begin{equation}
-& EF_{CH_{4} Vent} = \frac{b_{EF_V}}{c_{EF_V}}\,10^{6} \quad\quad\eqnunitfrac{gl}{event} \text{etc.}
+ EF_{CH_{4} Vent} = \frac{b_{EF_V}}{c_{EF_V}}\,10^{6} \quad\quad\eqnunitfrac{gl}{event} \text{etc.}
 \end{equation}
 %%%%%%%%%%
 where $ EF_{CO_{2} Vent}$ = emissions factor of CO$_{2}$ venting [g/event; g/mile-yr; g/mmscf]. For a description of $a_{EF_V}$, $b_{EF_V}$, and $c_{EF_V}$ parameters see Table\,\ref{tab:ARB_venting_EF}.
@@ -9530,7 +9525,7 @@ Connectors & & \\
 \end{table}
 
 
-Emissions factors for land use change are discussed in Section \ref{sec:drilling}. Table \ref{tab:default_land_use_emissions} shows the emissions factors per unit of crude oil produced for low, medium, and high intensity development in low, medium, and high ecosystem productivity environments \cite{Yeh2010}.
+Emissions factors for land use change are discussed in Section \ref{sec:drilling}. Tables \ref{tab:default_land_use_emissions_30} and \ref{tab:default_land_use_emissions_150} show the emissions factors per unit of crude oil produced for low, medium, and high intensity development in low, medium, and high ecosystem productivity environments \cite{Yeh2010}.
 
 
 \clearpage
@@ -10686,8 +10681,7 @@ Crude oil heating values are a function of the chemical composition of the crude
 
 \subsection{Crude oil chemical composition as a function of density}
 
-Crude oil chemical compositions (C, H, S, (O+N)) are given as a function of the density of crude oil \cite[Table 9]{Schmidt1985}. Values are interpolated between those given in the table using a relationship for fraction H as a function of API gravity. O + N contents are assumed to sum to 0.2 wt.\%. Sulfur content ranges from 5 wt\% to 0.5 wt.\%, with approximate concentrations derived from Figure \ref{fig:crude_contaminants}. Carbon mass fraction is computed by difference. 
-%issue 15: Which figure is referenced above? I found a figure in OPGEE 2.0 (Fig. 5.2) documentation but could not find it here in 3.0 
+Crude oil chemical compositions (C, H, S, (O+N)) are given as a function of the density of crude oil \cite[Table 9]{Schmidt1985}. Values are interpolated between those given in the table using a relationship for fraction H as a function of API gravity. O + N contents are assumed to sum to 0.2 wt.\%. Sulfur content ranges from 5 wt\% to 0.5 wt.\%. Carbon mass fraction is computed by difference. 
 
 \subsection{Heat of combustion of gaseous fuel components}
 
@@ -10799,7 +10793,7 @@ In the future we will use more detailed engineering sub-models and more comprehe
 \tabletail{\bottomrule \multicolumn{2}{p{1\columnwidth}}{\textit{Continued on next page...}}\\}
 \tablelasttail{\bottomrule}
 \tablecaption{Acronyms and abbreviations.}
-\label{tab:defaults_drivers}
+\label{tab:acronyms}
 \begin{supertabular*}{1\columnwidth}{p{0.15\columnwidth}p{0.8\columnwidth}}
 ABS & Absorbents\\
 AGR & Acid gas removal\\
